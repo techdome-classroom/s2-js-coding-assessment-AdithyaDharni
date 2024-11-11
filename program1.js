@@ -21,8 +21,8 @@ var isValid = function(s) {
         } else {
             // If it’s a closing bracket, check if it matches the last opened bracket
             const last = stack.pop();
-            if (map[last] !== char) {
-                return false;  // Mismatch found
+            if (!last || map[last] !== char) {
+                return false;  // Mismatch or unbalanced brackets
             }
         }
     }
