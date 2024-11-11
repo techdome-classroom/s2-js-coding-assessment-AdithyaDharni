@@ -1,3 +1,7 @@
+/**
+ * @param {string} s
+ * @return {number}
+ */
 function romanToInt(s) {
     // Map of Roman numeral values
     const romanMap = {
@@ -10,19 +14,22 @@ function romanToInt(s) {
         'M': 1000
     };
 
-    let result = 0;
+    let total = 0;
 
     for (let i = 0; i < s.length; i++) {
-        const currentVal = romanMap[s[i]];
-        const nextVal = romanMap[s[i + 1]];
+        // Get the value of the current and next characters
+        const current = romanMap[s[i]];
+        const next = romanMap[s[i + 1]];
 
-        // If the current value is less than the next value, we subtract it (like IV, IX, etc.)
-        if (nextVal && currentVal < nextVal) {
-            result -= currentVal;
+        // If the current value is less than the next, subtract it; otherwise, add it
+        if (current < next) {
+            total -= current;
         } else {
-            result += currentVal;
+            total += current;
         }
     }
 
-    return result;
+    return total;
 }
+
+module.exports = { romanToInt };
